@@ -12,6 +12,11 @@ public class GrapheListe implements Graphe {
      */
     private ArrayList<Arcs> adjacence;
 
+    public GrapheListe() {
+        this.noeuds = new ArrayList<String>();
+        this.adjacence = new ArrayList<Arcs>();
+    }
+
     /**
      * @param n est le noeud dont on recherche l'indice
      * @return l'indice du noeud n
@@ -36,7 +41,7 @@ public class GrapheListe implements Graphe {
         }
 
         // ajoute l'arc au noeud depart avec destination pour noeud de destination de l'arc
-        adjacence.get(adjacence.indexOf(depart)).ajouterArc(new Arc(destination, cout));
+        adjacence.get(noeuds.indexOf(depart)).ajouterArc(new Arc(destination, cout));
     }
 
     /**
