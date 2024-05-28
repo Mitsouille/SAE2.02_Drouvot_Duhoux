@@ -14,7 +14,7 @@ public class Arc {
      * @param d est une chaine
      * @param c est un reel
      */
-    public void Arc(String d, double c) {
+    public Arc(String d, double c) {
         this.dest =  d;
         this.cout = c;
     }
