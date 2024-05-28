@@ -13,7 +13,8 @@ public class Main {
         graphe.ajouterArc("D","C",10);
         graphe.ajouterArc("E","D",43);
 
-        graphe.toString();
+        System.out.println();
 
+        System.out.println(graphe.toString());
     }
 }

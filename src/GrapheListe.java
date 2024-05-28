@@ -60,7 +60,13 @@ public class GrapheListe implements Graphe {
      * @return la liste des arcs du noeud n
      */
     public List<Arc> suivants(String n) {
-        return adjacence.get(adjacence.indexOf(n)).getArcs();
+        List<Arc> l;
+        if (!adjacence.contains(n)) {
+            l = new ArrayList<>();
+        } else {
+            l = adjacence.get(adjacence.indexOf(n)).getArcs();
+        }
+        return l;
     }
 
 
@@ -71,6 +77,7 @@ public class GrapheListe implements Graphe {
             for(Arc a : suivants(n)) {
                 res += a.getDest() + " ";
             }
+            res += "\n";
         }
         return res;
     }
