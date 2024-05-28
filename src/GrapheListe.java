@@ -35,9 +35,11 @@ public class GrapheListe implements Graphe {
         // verifie que les noeuds depart et destination existent et les creent si ils n'existent pas
         if (!noeuds.contains(depart)) {
             noeuds.add(depart);
+            adjacence.add(new Arcs());
         }
         if (!noeuds.contains(destination)) {
             noeuds.add(destination);
+            adjacence.add(new Arcs());
         }
 
         // ajoute l'arc au noeud depart avec destination pour noeud de destination de l'arc
