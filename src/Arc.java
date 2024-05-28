@@ -18,4 +18,12 @@ public class Arc {
         this.dest =  d;
         this.cout = c;
     }
+
+    public String getDest() {
+        return dest;
+    }
+
+    public double getCout() {
+        return cout;
+    }
 }
