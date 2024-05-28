@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class GrapheListe implements Graphe {
     /**
@@ -36,5 +37,14 @@ public class GrapheListe implements Graphe {
 
         // ajoute l'arc au noeud depart avec destination pour noeud de destination de l'arc
         adjacence.get(adjacence.indexOf(depart)).ajouterArc(new Arc(destination, cout));
+    }
+
+    /**
+     * methode qui retourne la liste des arcs partant du noeud n
+     * @param n noeud passé en paramètre
+     * @return la liste des arcs du noeud n
+     */
+    public List<Arc> suivants(String n) {
+        return adjacence.get(adjacence.indexOf(n)).getArcs();
     }
 }
