@@ -55,4 +55,16 @@ public class GrapheListe implements Graphe {
     public List<Arc> suivants(String n) {
         return adjacence.get(adjacence.indexOf(n)).getArcs();
     }
+
+
+    public String toString() {
+        String res = "";
+        for(String n : noeuds) {
+            res += n + " -> ";
+            for(Arc a : suivants(n)) {
+                res += a.getDest() + " ";
+            }
+        }
+        return res;
+    }
 }

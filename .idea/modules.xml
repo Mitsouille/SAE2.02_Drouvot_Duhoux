@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SAE2.02_Drouvot_Duhoux.iml" filepath="$PROJECT_DIR$/.idea/SAE2.02_Drouvot_Duhoux.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SAE2.02_Drouvot_Duhoux.iml" filepath="$PROJECT_DIR$/SAE2.02_Drouvot_Duhoux.iml" />
     </modules>
   </component>
 </project>
