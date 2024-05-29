@@ -109,6 +109,64 @@ public class TestGraphe {
         assertEquals(-1,graphe.getIndice("A"),"-1 doit etre retourner car ce sommet n'est pas présent");
     }
 
+    @Test
+    public void test_GrapheSommetNonPresent_BellmanFord(){
+        //Préparation des données
+        GrapheListe graphe = new GrapheListe();
+        boolean exception = false;
+        //Utilisation de la méthode
+        try{
+            Valeur v = BellmanFord.resoudre(graphe,"G");
+        }catch (SommetInexistantException e){
+            exception = true;
+        }
+
+        //Vérification
+        assertEquals(true,exception,"Une exception doit etre retourner car le sommet n'est pas dans le graphe");
+    }
+
+    @Test
+    public void test_GrapheSommetNonPresent_Dijkstra(){
+        //Préparation des données
+        GrapheListe graphe = new GrapheListe();
+        boolean exception = false;
+        //Utilisation de la méthode
+        try{
+            Valeur v = Dijkstra.resoudre(graphe,"G");
+        }catch (SommetInexistantException e){
+            exception = true;
+        }
+
+        //Vérification
+        assertEquals(true,exception,"Une exception doit etre retourner car le sommet n'est pas dans le graphe");
+    }
+
+    /**
+     * Grosse douille dijkstra fonctionne pas trop des barres
+     * @throws Exception
+     */
+
+    @Test
+    public void test_GrapheResoudre_Dijkstra() throws Exception{
+        //Préparation des données
+        GrapheListe graphe = new GrapheListe();
+        graphe.ajouterArc("A","B",12);
+        graphe.ajouterArc("A","D",87);
+        graphe.ajouterArc("B","E",11);
+        graphe.ajouterArc("C","A",19);
+        graphe.ajouterArc("D","B",23);
+        graphe.ajouterArc("D","C",10);
+
+
+        //Utilisation de résoudre
+        Valeur v = Dijkstra.resoudre(graphe,"A");
+        System.out.println(v.getParent("B"));
+
+        //Vérification des chemins
+
+
+    }
+
 
 
 }
