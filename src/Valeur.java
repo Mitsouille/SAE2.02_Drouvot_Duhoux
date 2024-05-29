@@ -69,6 +69,26 @@ public class Valeur {
     }
 
     /**
+     * methode qui donne les noms des noeuds du chemin le plus court de depart a destination
+     * @param destination
+     * @return la liste des noeuds du chemin le plus court jusqu'à destination
+     */
+    public List<String> calculerChemin(String destination) {
+        String parent = destination;
+        ArrayList<String> lp = new ArrayList<String>();
+        while (parent!=null) {
+            lp.add(parent);
+            parent = this.getParent(parent);
+        }
+        // inverse la liste pour avoir le chemin partant du depart
+        ArrayList<String> inv = new ArrayList<String>();
+        for (int i=0;i<lp.size();i++) {
+            inv.add(0, lp.get(i));
+        }
+        return inv;
+    }
+
+    /**
      * retourne une chaine qui affiche le contenu
      * - par noeud stocke
      * - a chaque noeud, affiche la valeur puis le noeud parent
