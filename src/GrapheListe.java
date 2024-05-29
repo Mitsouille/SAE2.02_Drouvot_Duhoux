@@ -31,7 +31,7 @@ public class GrapheListe implements Graphe {
      * @param destination est le nom du noeud de destination de l'arc
      * @param cout est le cout de l'arc entre les noeuds depart et destination
      */
-    public void ajouterArc(String depart, String destination, double cout) {
+    public void ajouterArc(String depart, String destination, double cout) throws Exception{
         // verifie que les noeuds depart et destination existent et les creent si ils n'existent pas
         if (!noeuds.contains(depart)) {
             noeuds.add(depart);

@@ -14,9 +14,12 @@ public class Arc {
      * @param d est une chaine
      * @param c est un reel
      */
-    public Arc(String d, double c) {
+    public Arc(String d, double c) throws Exception {
         this.dest =  d;
+        if(c >= 0)
         this.cout = c;
+        else
+            throw new Exception("Un arc négatif est impossible");
     }
 
     public String getDest() {
