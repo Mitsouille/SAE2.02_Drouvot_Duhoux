@@ -48,7 +48,7 @@ public class Dijkstra {
         v.setValeur(depart,0);
         while(!Q.isEmpty()){
             // recherche minimum dans Q
-            Double min = Double.MAX_VALUE;
+            double min = Double.MAX_VALUE;
             String sMin = null;
             for (String s : Q) {
                 if(v.getValeur(s) < min){
@@ -57,11 +57,11 @@ public class Dijkstra {
                 }
             }
             Q.remove(sMin);
-            for(String s : Q){
-                Double d = v.getValeur(sMin) + v.getValeur(v.getParent(sMin));
-                if (d < v.getValeur(s)) { // alors le chemin est plus interessant
-                    v.setValeur(s, d);
-                    v.setParent(s, sMin);
+            for(Arc a : g.suivants(sMin)){
+                double d = v.getValeur(sMin) + a.getCout();
+                if (d < v.getValeur(a.getDest())) { // alors le chemin est plus interessant
+                    v.setValeur(a.getDest(), d);
+                    v.setParent(a.getDest(), sMin);
                 }
             }
         }

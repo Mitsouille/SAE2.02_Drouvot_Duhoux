@@ -60,7 +60,6 @@ public class TestGraphe {
     }
 
     @Test
-    public void test_GrapheListe_ajout() throws Exception{
     public void test_GrapheAjoutNegatif(){
         //Préparation des données
         boolean exception = false;
