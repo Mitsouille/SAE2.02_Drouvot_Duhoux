@@ -17,5 +17,10 @@ public class Main {
 
         Valeur vals = BellmanFord.resoudre(graphe,"A");
         System.out.println(vals.toString());
+
+        ArrayList<String> chemin = (ArrayList<String>) vals.calculerChemin("C");
+        for(String n : chemin) {
+            System.out.print(n);
+        }
     }
 }

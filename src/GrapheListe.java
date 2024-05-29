@@ -62,7 +62,7 @@ public class GrapheListe implements Graphe {
     public List<Arc> suivants(String n) {
         List<Arc> l;
         if (!noeuds.contains(n)) {
-            l = new ArrayList<>();
+            l = null;
         } else {
             l = adjacence.get(noeuds.indexOf(n)).getArcs();
         }
