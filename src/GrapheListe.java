@@ -69,7 +69,10 @@ public class GrapheListe implements Graphe {
         return l;
     }
 
-
+    /**
+     * methode toString de GrapheListe
+     * @return une chaine affichant le nom de chaque noeud suivi des ses successeurs et leurs couts
+     */
     public String toString() {
         String res = "";
         for(String n : noeuds) {

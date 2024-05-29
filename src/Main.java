@@ -14,5 +14,8 @@ public class Main {
         graphe.ajouterArc("E","D",43);
 
         System.out.println(graphe.toString());
+
+        Valeur vals = BellmanFord.resoudre(graphe,"A");
+        System.out.println(vals.toString());
     }
 }
