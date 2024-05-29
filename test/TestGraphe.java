@@ -39,14 +39,50 @@ public class TestGraphe {
     }
 
     @Test
-    public void test_GrapheListe_ajout(){
+    public void test_GrapheListe_suivants_noeudInexistant() throws Exception{
         //Préparation des données
         GrapheListe graphe = new GrapheListe();
         //Utilisation de la méthode
         graphe.ajouterArc("A","B",5.5);
         //Vérification
-        assertEquals("B",graphe.suivants("B").get(graphe.getIndice("B")).getDest());
-        assertEquals(5.5,graphe.suivants("B").get(graphe.getIndice("B")).getCout());
+        assertEquals( null, graphe.suivants("B") );
     }
 
+    @Test
+    public void test_GrapheListe_suivants_noeudExistant() throws Exception{
+        //Préparation des données
+        GrapheListe graphe = new GrapheListe();
+        //Utilisation de la méthode
+        graphe.ajouterArc("A","B",5.5);
+        //Vérification
+        assertEquals( "B", graphe.suivants("A").get(0) );
+    }
+
+    @Test
+    public void test_GrapheListe_ajout() throws Exception{
+        //Préparation des données
+        GrapheListe graphe = new GrapheListe();
+        //Utilisation de la méthode
+        graphe.ajouterArc("A","B",5.5);
+        //Vérification
+        assertEquals( "B", graphe.suivants("A").get(0).getDest() );
+        assertEquals( 5.5, graphe.suivants("A").get(0).getCout() );
+    }
+
+    @Test
+    public void test_BellmanFord_resoudre() throws Exception{
+        //Préparation des données
+        GrapheListe graphe = new GrapheListe();
+        //Utilisation de la méthode
+        graphe.ajouterArc("A","B",2);
+        graphe.ajouterArc("B","C",8);
+        graphe.ajouterArc("A","D",1);
+        graphe.ajouterArc("D","C",2);
+        graphe.ajouterArc("C","E",3);
+        //utilisation de resoudre
+        Valeur v = BellmanFord.resoudre(graphe,"A");
+        //Vérification
+        assertEquals("D",v.getParent("C"));
+        assertEquals(6,v.getValeur("E"));
+    }
 }
