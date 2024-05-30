@@ -15,10 +15,13 @@ public class Main {
 
         System.out.println(graphe.toString());
 
-        Valeur vals = BellmanFord.resoudre(graphe,"A");
+        Valeur vals = BellmanFord.resoudre(graphe,"Z");
         System.out.println(vals.toString());
 
-        ArrayList<String> chemin = (ArrayList<String>) vals.calculerChemin("C");
+        Valeur vals2 = Dijkstra.resoudre(graphe,"Z");
+        System.out.println(vals.toString());
+
+        ArrayList<String> chemin = (ArrayList<String>) vals.calculerChemin("D");
         for(String n : chemin) {
             System.out.print(n);
         }

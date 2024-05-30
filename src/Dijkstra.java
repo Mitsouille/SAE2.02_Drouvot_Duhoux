@@ -36,11 +36,10 @@ public class Dijkstra {
      */
 
 
-    public static Valeur resoudre(Graphe g, String depart) throws SommetInexistantException{
+    public static Valeur resoudre(Graphe g, String depart){
         Valeur v = new Valeur();
         ArrayList<String> listeSommet = (ArrayList<String>) g.listeNoeuds();
-        if(!listeSommet.contains(depart))
-            throw new SommetInexistantException(depart);
+
         ArrayList<String> Q = new ArrayList<String>();
         for(String sommet : listeSommet){
             v.setValeur(sommet,Double.MAX_VALUE);
@@ -59,6 +58,9 @@ public class Dijkstra {
                 }
             }
             Q.remove(sMin);
+            if(g.suivants(sMin) == null){
+                return v;
+            }
             for(Arc a : g.suivants(sMin)){
                 double d = v.getValeur(sMin) + a.getCout();
                 if (d < v.getValeur(a.getDest())) { // alors le chemin est plus interessant

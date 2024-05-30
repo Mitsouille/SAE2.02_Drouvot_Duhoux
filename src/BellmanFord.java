@@ -32,11 +32,10 @@ public class BellmanFord {
      * @param depart est une chaine correspondant au sommet de depart
      * @return un objet Valeur qui contient les longueurs des differents chemins entre depart et les autres sommets
      */
-    public static Valeur resoudre(Graphe g, String depart) throws SommetInexistantException{
+    public static Valeur resoudre(Graphe g, String depart) {
         Valeur v = new Valeur();
         ArrayList<String> s = (ArrayList<String>) g.listeNoeuds();
-        if(!s.contains(depart))
-            throw new SommetInexistantException(depart);
+
         for(String u : s) {
             v.setValeur(u, Double.MAX_VALUE);
             v.setParent(u, null);

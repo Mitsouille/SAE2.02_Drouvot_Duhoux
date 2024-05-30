@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,45 @@ public class GrapheListe implements Graphe {
         this.adjacence = new ArrayList<Arcs>();
     }
 
+    /**
+     * Permet de charger un graphe a partir d'un fichier
+     * séparer par des tabulations
+     * @param nomfichier nom du fichier
+     */
+
+    public GrapheListe(String nomfichier){
+        this.noeuds = new ArrayList<String>();
+        this.adjacence = new ArrayList<Arcs>();
+        //Vérification existence fichier
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(nomfichier));
+            //Tant que non fin fichier
+            try{
+                while(true){
+                    //On lit chaque ligne, on la sépare par tabulation
+                    String ligne = br.readLine();
+                    if(ligne == null)
+                        throw new EOFException("Fin de fichier");
+                    String[] separation = ligne.split("\t");
+                    try{
+                        //On tente de l'ajouter au graphe
+                        this .ajouterArc(separation[0],separation[1], Double.parseDouble(separation[2]));
+                    }catch (ErreurFichierException e){
+                        //Si l'erreur vient de la conception du fichier, on renvoie une exception
+                        System.out.println(e.getMessage() + "\n problème fichier");
+                    }catch (Exception e){
+                        //Si l'erreur vient des valeurs du fichiers
+                        System.out.println(e.getMessage() + "\n problème négatif");
+                    }
+                }
+            }catch (EOFException e){
+            //On ferme le bufferedReader en fin de fichier
+                br.close();
+            }
+        }catch(IOException e){
+            System.out.println("Fichier inexistant ou introuvable");
+        }
+    }
     /**
      * @param n est le noeud dont on recherche l'indice
      * @return l'indice du noeud n

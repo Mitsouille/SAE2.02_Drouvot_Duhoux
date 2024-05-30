@@ -18,5 +18,10 @@ public class MainDijkstra {
         for(String n : chemin) {
             System.out.print(n);
         }
+
+        ArrayList<String> chemin2 = (ArrayList<String>) v.calculerChemin("D");
+        for(String n : chemin2){
+            System.out.print(n);
+        }
     }
 }

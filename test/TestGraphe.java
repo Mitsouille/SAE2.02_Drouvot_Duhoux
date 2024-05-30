@@ -2,6 +2,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 public class TestGraphe {
     @Test
     public void test_ConstructeurArc() throws Exception{
@@ -43,10 +45,11 @@ public class TestGraphe {
     public void test_GrapheListe_suivants_noeudInexistant() throws Exception{
         //Préparation des données
         GrapheListe graphe = new GrapheListe();
+        ArrayList<Arc> listeVide = new ArrayList<Arc>();
         //Utilisation de la méthode
         graphe.ajouterArc("A","B",5.5);
         //Vérification
-        assertEquals( null, graphe.suivants("B") );
+        assertEquals( listeVide, graphe.suivants("B"),"Une liste vide doit être renvoyé");
     }
 
     @Test
@@ -56,7 +59,7 @@ public class TestGraphe {
         //Utilisation de la méthode
         graphe.ajouterArc("A","B",5.5);
         //Vérification
-        assertEquals( "B", graphe.suivants("A").get(0) );
+        assertEquals( "B", graphe.suivants("A").get(0).getDest(),"La destination doit être B");
     }
 
     @Test
@@ -110,35 +113,26 @@ public class TestGraphe {
     }
 
     @Test
-    public void test_GrapheSommetNonPresent_BellmanFord(){
+    public void test_GrapheSommetVide_BellmanFord(){
         //Préparation des données
         GrapheListe graphe = new GrapheListe();
-        boolean exception = false;
         //Utilisation de la méthode
-        try{
-            Valeur v = BellmanFord.resoudre(graphe,"G");
-        }catch (SommetInexistantException e){
-            exception = true;
-        }
-
+        Valeur v = BellmanFord.resoudre(graphe,"G");
+        double valeurV = v.getValeur("G");
         //Vérification
-        assertEquals(true,exception,"Une exception doit etre retourner car le sommet n'est pas dans le graphe");
+        assertEquals(0.0,valeurV,"La valeur du chemin doit être de 0");
     }
 
     @Test
-    public void test_GrapheSommetNonPresent_Dijkstra(){
+    public void test_GrapheVide_Dijkstra(){
         //Préparation des données
         GrapheListe graphe = new GrapheListe();
-        boolean exception = false;
         //Utilisation de la méthode
-        try{
-            Valeur v = Dijkstra.resoudre(graphe,"G");
-        }catch (SommetInexistantException e){
-            exception = true;
-        }
+        Valeur v = Dijkstra.resoudre(graphe,"G");
+        double valeurG = v.getValeur("G");
 
         //Vérification
-        assertEquals(true,exception,"Une exception doit etre retourner car le sommet n'est pas dans le graphe");
+        assertEquals(0.0,valeurG,"La valeur du chemin doit être de 0");
     }
 
     /**
@@ -156,6 +150,7 @@ public class TestGraphe {
         graphe.ajouterArc("C","A",19);
         graphe.ajouterArc("D","B",23);
         graphe.ajouterArc("D","C",10);
+        graphe.ajouterArc("E","D",43);
 
 
         //Utilisation de résoudre
