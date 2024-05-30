@@ -1,9 +1,11 @@
+import javax.print.DocPrintJob;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception{
-
+        BellmanFord bf = new BellmanFord();
+        Dijkstra dj = new Dijkstra();
         GrapheListe graphe = new GrapheListe();
         graphe.ajouterArc("A","D",87);
         graphe.ajouterArc("A","B",12);
@@ -15,10 +17,10 @@ public class Main {
 
         System.out.println(graphe.toString());
 
-        Valeur vals = BellmanFord.resoudre(graphe,"Z");
+        Valeur vals = bf.resoudre(graphe,"Z");
         System.out.println(vals.toString());
 
-        Valeur vals2 = Dijkstra.resoudre(graphe,"Z");
+        Valeur vals2 = dj.resoudre(graphe,"Z");
         System.out.println(vals.toString());
 
         ArrayList<String> chemin = (ArrayList<String>) vals.calculerChemin("D");

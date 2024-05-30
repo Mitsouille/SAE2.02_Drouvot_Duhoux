@@ -9,6 +9,7 @@ public class TestAlgo {
     public void test_BellmanFord_resoudre() throws Exception{
         //Préparation des données
         GrapheListe graphe = new GrapheListe();
+        BellmanFord bf = new BellmanFord();
         //Utilisation de la méthode
         graphe.ajouterArc("A","B",12);
         graphe.ajouterArc("A","D",87);
@@ -19,7 +20,7 @@ public class TestAlgo {
         graphe.ajouterArc("E","D",43);
 
         //utilisation de resoudre
-        Valeur v = BellmanFord.resoudre(graphe,"A");
+        Valeur v = bf.resoudre(graphe,"A");
         //Vérification
         assertEquals(0,v.getValeur("A"),"Le cout de A doit etre de 0");
         assertEquals(12,v.getValeur("B"),"Le cout de B doit etre de 12");
@@ -37,9 +38,10 @@ public class TestAlgo {
     @Test
     public void test_CalculerCheminBellman() throws Exception{
         //Préparation des données
+        BellmanFord bf = new BellmanFord();
         String[] cheminVerif = {"1","2","3"};
         GrapheListe g = new GrapheListe("./data/graphe_test/Graphe_TestNormal.txt");
-        Valeur v = BellmanFord.resoudre(g,"1");
+        Valeur v = bf.resoudre(g,"1");
 
         //Utilisation des méthodes
         ArrayList<String> chemin = (ArrayList<String>) v.calculerChemin("3");
@@ -51,9 +53,10 @@ public class TestAlgo {
     @Test
     public void test_GrapheSommetVide_BellmanFord(){
         //Préparation des données
+        BellmanFord bf = new BellmanFord();
         GrapheListe graphe = new GrapheListe();
         //Utilisation de la méthode
-        Valeur v = BellmanFord.resoudre(graphe,"G");
+        Valeur v = bf.resoudre(graphe,"G");
         double valeurV = v.getValeur("G");
         //Vérification
         assertEquals(0.0,valeurV,"La valeur du chemin doit être de 0");
@@ -63,6 +66,7 @@ public class TestAlgo {
     public void test_GrapheResoudre_Dijkstra() throws Exception{
         //Préparation des données
         GrapheListe graphe = new GrapheListe();
+        Dijkstra dj = new Dijkstra();
         graphe.ajouterArc("A","B",12);
         graphe.ajouterArc("A","D",87);
         graphe.ajouterArc("B","E",11);
@@ -73,7 +77,7 @@ public class TestAlgo {
 
 
         //Utilisation de résoudre
-        Valeur v = Dijkstra.resoudre(graphe,"A");
+        Valeur v = dj.resoudre(graphe,"A");
         //Vérification des chemins
         assertEquals(0,v.getValeur("A"),"Le cout de A doit etre de 0");
         assertEquals(12,v.getValeur("B"),"Le cout de B doit etre de 12");
@@ -91,8 +95,10 @@ public class TestAlgo {
     @Test
     public void test_CalculerCheminDjikstra() throws Exception{
         //Préparation des données
+        Dijkstra dj = new Dijkstra();
         GrapheListe g = new GrapheListe("./data/graphe_test/Graphe_TestNormal.txt");
-        Valeur v = Dijkstra.resoudre(g,"1");
+        Valeur v = dj.resoudre(g,"1");
+        //Utilisation méthode
         ArrayList<String> chemin = (ArrayList<String>) v.calculerChemin("3");
         String[] cheminVerif = {"1","2","3"};
         for(int i = 0; i < chemin.size(); i++){
@@ -102,9 +108,10 @@ public class TestAlgo {
     @Test
     public void test_GrapheVide_Dijkstra(){
         //Préparation des données
+        Dijkstra dj = new Dijkstra();
         GrapheListe graphe = new GrapheListe();
         //Utilisation de la méthode
-        Valeur v = Dijkstra.resoudre(graphe,"G");
+        Valeur v = dj.resoudre(graphe,"G");
         double valeurG = v.getValeur("G");
 
         //Vérification
@@ -114,9 +121,10 @@ public class TestAlgo {
     @Test
     public void test_Djikstra_finGraphe() throws Exception{
         //Préparation des données
+        Dijkstra dj = new Dijkstra();
         GrapheListe g = new GrapheListe("./data/graphe_test/Graphe_testFin.txt");
         //Utilisation de la méthode
-        Valeur v = Dijkstra.resoudre(g,"4");
+        Valeur v = dj.resoudre(g,"4");
         //Vérification
         assertEquals(0.0,v.getValeur("4"),"Le chemin doit valoir 0");
         assertEquals(Double.MAX_VALUE,v.getValeur("1"),"Le chemin doit valoir +infini");

@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 public class MainDijkstra {
     public static void main(String[] args) throws Exception{
+        Dijkstra dj = new Dijkstra();
+        BellmanFord bf = new BellmanFord();
         //Test simple de fonctionnement
         //Création du graphe
         GrapheListe graphe = new GrapheListe();
@@ -15,7 +17,7 @@ public class MainDijkstra {
         graphe.ajouterArc("E","D",43);
 
         //Test résolution du graphe en partant de A
-        Valeur v = Dijkstra.resoudre(graphe, "A");
+        Valeur v = dj.resoudre(graphe, "A");
         //Calcul du chemin le plus court vers C
         ArrayList<String> chemin = (ArrayList<String>) v.calculerChemin("C");
         for(String n : chemin) {
@@ -34,7 +36,7 @@ public class MainDijkstra {
         //Test du chargement a partir de fichier du graphe
         String pathGraphe = "./data/graphe/";
         GrapheListe grapheCharger = new GrapheListe(pathGraphe+"Graphe5.txt");
-        Valeur v5 = Dijkstra.resoudre(grapheCharger,"1");
+        Valeur v5 = dj.resoudre(grapheCharger,"1");
         System.out.println(v5.getValeur("3"));
 
         //test lecture repertoire
@@ -44,7 +46,7 @@ public class MainDijkstra {
         long date_debut = System.nanoTime();
         for(int i = 0; i < liste.length; i++){
             GrapheListe g = new GrapheListe(pathGraphe + liste[i]);
-            Valeur val = Dijkstra.resoudre(g,"1");
+            Valeur val = dj.resoudre(g,"1");
         }
         long date_fin = System.nanoTime();
         long tempsFinal = date_fin - date_debut;
@@ -53,15 +55,15 @@ public class MainDijkstra {
         long date_debut2 = System.nanoTime();
         for(int i = 0; i < liste.length; i++){
             GrapheListe g = new GrapheListe(pathGraphe + liste[i]);
-            Valeur val = BellmanFord.resoudre(g,"1");
+            Valeur val = bf.resoudre(g,"1");
         }
         long date_fin2 = System.nanoTime();
         long tempsFinal2 = date_fin2 - date_debut2;
         System.out.println("Temps nécéssaire : " + tempsFinal2);
 
         GrapheListe gg = new GrapheListe(pathGraphe+"Graphe905.txt");
-        Valeur vDij = Dijkstra.resoudre(gg,"3");
-        Valeur vBell = BellmanFord.resoudre(gg,"3");
+        Valeur vDij = dj.resoudre(gg,"3");
+        Valeur vBell = bf.resoudre(gg,"3");
         System.out.println(vDij.calculerChemin("545"));
         System.out.println(vBell.calculerChemin("545"));
     }

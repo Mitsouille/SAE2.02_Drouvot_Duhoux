@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Dijkstra {
+public class Dijkstra implements Algorithme{
     /**
      * Entrées :
      * G un graphe orienté avec une pondération positive des arcs (co^ut ou poids)
@@ -36,7 +36,7 @@ public class Dijkstra {
      */
 
 
-    public static Valeur resoudre(Graphe g, String depart){
+    public Valeur resoudre(Graphe g, String depart){
         Valeur v = new Valeur();
         ArrayList<String> listeSommet = (ArrayList<String>) g.listeNoeuds();
 

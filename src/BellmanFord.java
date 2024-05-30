@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class BellmanFord {
+public class BellmanFord implements Algorithme{
 
     /* Algorithme
     fonction pointFixe(Graphe g InOut, Noeud depart)
@@ -32,7 +32,7 @@ public class BellmanFord {
      * @param depart est une chaine correspondant au sommet de depart
      * @return un objet Valeur qui contient les longueurs des differents chemins entre depart et les autres sommets
      */
-    public static Valeur resoudre(Graphe g, String depart) {
+    public Valeur resoudre(Graphe g, String depart) {
         Valeur v = new Valeur();
         ArrayList<String> s = (ArrayList<String>) g.listeNoeuds();
 
