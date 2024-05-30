@@ -13,6 +13,10 @@ public class GrapheListe implements Graphe {
      */
     private ArrayList<Arcs> adjacence;
 
+    /**
+     * Constructeur vide d'un GrapheListe
+     */
+
     public GrapheListe() {
         this.noeuds = new ArrayList<String>();
         this.adjacence = new ArrayList<Arcs>();
@@ -21,42 +25,34 @@ public class GrapheListe implements Graphe {
     /**
      * Permet de charger un graphe a partir d'un fichier
      * séparer par des tabulations
+     *
      * @param nomfichier nom du fichier
      */
 
-    public GrapheListe(String nomfichier){
+    public GrapheListe(String nomfichier) throws Exception {
         this.noeuds = new ArrayList<String>();
         this.adjacence = new ArrayList<Arcs>();
         //Vérification existence fichier
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(nomfichier));
-            //Tant que non fin fichier
-            try{
-                while(true){
-                    //On lit chaque ligne, on la sépare par tabulation
-                    String ligne = br.readLine();
-                    if(ligne == null)
-                        throw new EOFException("Fin de fichier");
-                    String[] separation = ligne.split("\t");
-                    try{
-                        //On tente de l'ajouter au graphe
-                        this .ajouterArc(separation[0],separation[1], Double.parseDouble(separation[2]));
-                    }catch (ErreurFichierException e){
-                        //Si l'erreur vient de la conception du fichier, on renvoie une exception
-                        System.out.println(e.getMessage() + "\n problème fichier");
-                    }catch (Exception e){
-                        //Si l'erreur vient des valeurs du fichiers
-                        System.out.println(e.getMessage() + "\n problème négatif");
-                    }
-                }
-            }catch (EOFException e){
-            //On ferme le bufferedReader en fin de fichier
-                br.close();
+        BufferedReader br = new BufferedReader(new FileReader(nomfichier));
+        //Tant que non fin fichier
+        try {
+            while (true) {
+                //On lit chaque ligne, on la sépare par tabulation
+                String ligne = br.readLine();
+                if (ligne == null)
+                    throw new EOFException("Fin de fichier");
+                String[] separation = ligne.split("\t");
+                if(separation.length != 3)
+                    throw new ErreurFichierException("Valeur manquante dans le fichier");
+                //On tente de l'ajouter au graphe
+                this.ajouterArc(separation[0], separation[1], Double.parseDouble(separation[2]));
             }
-        }catch(IOException e){
-            System.out.println("Fichier inexistant ou introuvable");
+        } catch (EOFException e) {
+            //On ferme le bufferedReader en fin de fichier
+            br.close();
         }
     }
+
     /**
      * @param n est le noeud dont on recherche l'indice
      * @return l'indice du noeud n
@@ -67,11 +63,12 @@ public class GrapheListe implements Graphe {
 
     /**
      * ajoute un Arc à la liste d'arcs du graphe
-     * @param depart est le nom du noeud de depart de l'arc
+     *
+     * @param depart      est le nom du noeud de depart de l'arc
      * @param destination est le nom du noeud de destination de l'arc
-     * @param cout est le cout de l'arc entre les noeuds depart et destination
+     * @param cout        est le cout de l'arc entre les noeuds depart et destination
      */
-    public void ajouterArc(String depart, String destination, double cout) throws Exception{
+    public void ajouterArc(String depart, String destination, double cout) throws Exception {
         // verifie que les noeuds depart et destination existent et les creent si ils n'existent pas
         if (!noeuds.contains(depart)) {
             noeuds.add(depart);
@@ -88,6 +85,7 @@ public class GrapheListe implements Graphe {
 
     /**
      * Retourne tout les noeuds du graphe sous une forme de liste de String
+     *
      * @return tout les noeuds du graphes
      */
     public List<String> listeNoeuds() {
@@ -96,6 +94,7 @@ public class GrapheListe implements Graphe {
 
     /**
      * methode qui retourne la liste des arcs partant du noeud n
+     *
      * @param n noeud passé en paramètre
      * @return la liste des arcs du noeud n
      */
@@ -111,13 +110,14 @@ public class GrapheListe implements Graphe {
 
     /**
      * methode toString de GrapheListe
+     *
      * @return une chaine affichant le nom de chaque noeud suivi des ses successeurs et leurs couts
      */
     public String toString() {
         String res = "";
-        for(String n : noeuds) {
+        for (String n : noeuds) {
             res += n + " -> ";
-            for(Arc a : suivants(n)) {
+            for (Arc a : suivants(n)) {
                 res += a.getDest() + "(" + a.getCout() + ")" + " ";
             }
             res += "\n";

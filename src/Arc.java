@@ -22,10 +22,19 @@ public class Arc {
             throw new Exception("Un arc négatif est impossible");
     }
 
+    /**
+     * Retourne la destination de l'arc
+     * @return destination de l'arc
+     */
+
     public String getDest() {
         return dest;
     }
 
+    /**
+     * Retourne le cout de l'arc
+     * @return cout de l'arc
+     */
     public double getCout() {
         return cout;
     }
