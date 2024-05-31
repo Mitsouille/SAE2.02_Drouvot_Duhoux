@@ -15,15 +15,16 @@ public class Main {
         graphe.ajouterArc("D","C",10);
         graphe.ajouterArc("E","D",43);
 
-        System.out.println(graphe.toString());
+        System.out.println("Graphe : " + graphe.toString());
 
         Valeur vals = bf.resoudre(graphe,"Z");
-        System.out.println(vals.toString());
+        System.out.println("Valeurs du graphe avec BellmanFord : " + vals.toString());
 
         Valeur vals2 = dj.resoudre(graphe,"Z");
-        System.out.println(vals.toString());
+        System.out.println("Valeurs du graphe avec Dijkstra : " + vals2.toString());
 
         ArrayList<String> chemin = (ArrayList<String>) vals.calculerChemin("D");
+        System.out.println("Chemin le plus court vers D ");
         for(String n : chemin) {
             System.out.print(n);
         }
