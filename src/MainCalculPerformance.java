@@ -1,7 +1,7 @@
 import java.io.File;
 
 public class MainCalculPerformance {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         //Initialisation des algos
         Dijkstra dj = new Dijkstra();
         BellmanFord bf = new BellmanFord();
@@ -14,12 +14,11 @@ public class MainCalculPerformance {
         System.out.println("Nombre de graphes présent dans le dossier : " + liste.length);
         //Début du chrono
         long date_debut = System.nanoTime();
-        for(int j = 0; j < 2; j++){
-            for (int i = 0; i < liste.length; i++) {
-                GrapheListe g = new GrapheListe(pathGraphe + liste[i]);
-                Valeur val = dj.resoudre(g, "1");
-            }
+        for (int i = 0; i < liste.length; i++) {
+            GrapheListe g = new GrapheListe(pathGraphe + liste[i]);
+            Valeur val = dj.resoudre(g, "1");
         }
+
         //Fin du chrono
         long date_fin = System.nanoTime();
         //Calcul de la différence
@@ -28,12 +27,11 @@ public class MainCalculPerformance {
         System.out.println("Ce qui représente : " + tempsFinal * 1E-9 + " secondes");
         //Début du chrono
         long date_debut2 = System.nanoTime();
-        for(int j = 0; j < 2; j++){
-            for (int i = 0; i < liste.length; i++) {
-                GrapheListe g = new GrapheListe(pathGraphe + liste[i]);
-                Valeur val = bf.resoudre(g, "1");
-            }
+        for (int i = 0; i < liste.length; i++) {
+            GrapheListe g = new GrapheListe(pathGraphe + liste[i]);
+            Valeur val = bf.resoudre(g, "1");
         }
+
         //Fin du chrono
         long date_fin2 = System.nanoTime();
         //Calcul de la différence

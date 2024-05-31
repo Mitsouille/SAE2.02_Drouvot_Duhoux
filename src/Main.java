@@ -17,10 +17,10 @@ public class Main {
 
         System.out.println("Graphe : " + graphe.toString());
 
-        Valeur vals = bf.resoudre(graphe,"Z");
+        Valeur vals = bf.resoudre(graphe,"A");
         System.out.println("Valeurs du graphe avec BellmanFord : " + vals.toString());
 
-        Valeur vals2 = dj.resoudre(graphe,"Z");
+        Valeur vals2 = dj.resoudre(graphe,"A");
         System.out.println("Valeurs du graphe avec Dijkstra : " + vals2.toString());
 
         ArrayList<String> chemin = (ArrayList<String>) vals.calculerChemin("D");

@@ -181,7 +181,14 @@ public class TestAlgo {
         assertEquals("B",v.getParent("G"),"Le parent de G doit etre B");
     }
 
-
+    @Test
+    public void test_calculerCheminHorsGraphe() throws Exception{
+        GrapheListe g = new GrapheListe("./data/graphe_test/Graphe_TestNormal.txt");
+        Dijkstra dj = new Dijkstra();
+        Valeur v = dj.resoudre(g,"9");
+        assertEquals(0,v.getValeur("9"),"La valeur doit etre 0");
+        assertEquals(Double.MAX_VALUE,v.getValeur("2"),"La valeur doit etre infinie");
+    }
 
 
 }
